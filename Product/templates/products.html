@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Our Products</title>
+</head>
+<body>
+
+    <h1>Our Product</h1>
+
+    <ul>
+        {% for item in products %}
+            <li style="margin-bottom: 20px;">
+                <!-- Displays the product title -->
+                <strong>{{ item.name }}</strong> <br>
+                
+                <!-- Displays the description -->
+                <p>{{ item.description }}</p>
+                
+                <!-- Displays the price and stock level -->
+                <p>Price: ${{ item.price }} | Stock: {{ item.stock }} units</p>
+
+                <!-- Displays the actual image from the database -->
+                {% if item.image %}
+                    <img src="{{ item.image.url }}" alt="{{ item.name }}" style="max-width: 100px; height: auto; border: 1px solid #ccc;">
+                {% else %}
+                    <p style="color: red;">No image uploaded for this item.</p>
+                {% endif %}
+            </li>
+        {% empty %}
+            <li>No products found in the database.</li>
+        {% endfor %}
+    </ul>
+
+</body>
+</html>
