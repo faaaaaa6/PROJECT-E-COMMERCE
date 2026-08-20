@@ -1,36 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Our Products</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-    <h1>Our Product</h1>
+{% block title %} All Products{% endblock title %}
 
-    <ul>
-        {% for item in products %}
-            <li style="margin-bottom: 20px;">
-                <!-- Displays the product title -->
-                <strong>{{ item.name }}</strong> <br>
-                
-                <!-- Displays the description -->
-                <p>{{ item.description }}</p>
-                
-                <!-- Displays the price and stock level -->
-                <p>Price: ${{ item.price }} | Stock: {{ item.stock }} units</p>
+{%block content%}
+    <h2>Product Catalog</h2>
 
-                <!-- Displays the actual image from the database -->
-                {% if item.image %}
-                    <img src="{{ item.image.url }}" alt="{{ item.name }}" style="max-width: 100px; height: auto; border: 1px solid #ccc;">
-                {% else %}
-                    <p style="color: red;">No image uploaded for this item.</p>
-                {% endif %}
-            </li>
-        {% empty %}
-            <li>No products found in the database.</li>
-        {% endfor %}
-    </ul>
+    {% for product in products%}
+        <div>
 
-</body>
-</html>
+            {% if product.image%}
+                <img src="{{product.image.url}}" alt="{{product.name}}" width="100">
+            {%endif%}
+            
+            <h3>
+                <a href={% url 'product_details' pk=product.pk%}>
+                {{ product.name}}
+                </a>
+            </h3>
+            
+            <p>Price: {{ product.price }}<p/>
+            <hr>
+        </div> 
+    {%empty%} 
+        <p>No product found in </p>
+    {% endfor %}
+{% endblock content %}                  
+

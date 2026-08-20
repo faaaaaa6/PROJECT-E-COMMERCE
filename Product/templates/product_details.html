@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{%block title%} {{product.name}} Details {%endblock title%}
+
+{%block content%}
+    <p><a href="{% url 'product_list'%}"> Back to Products</a><p>
+    
+      <h1>{{product.name}}</h1>
+
+      {% if product.image%}
+          <img src="{{ product.image.url }}" alt="{{product.name}}" width="250">
+      {% endif %} 
+      
+      <p><strong>Price:</strong> {{product.price}}</p>
+
+      <p><strong>Description:</strong></p>
+      <p>{{product.description}}</p>
+
+      <p><strong>Stock Level:</strong>
+        {%if product.stock > 0 %}
+            In Stock ({{ product.stock }} items avaialble)
+        {%else%}
+            Out of Stock
+        {% endif%}
+      </p> 
+      
+      {% if product.stock > 0 %}
+         <form action="#" method="POST">
+             {% csrf_token %}
+             <button type="submit">Add to Cart</button>
+         </form>
+      {%else%}
+          <button type="button" disabled>Temporarily Out of Stock</button>
+      {% endif%} 
+{%endblock content%}      
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+      

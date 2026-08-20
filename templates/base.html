@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta char="UTF-8">
+  <meta name=""viewport content="width=device-width" , inital-scale="1.0">
+  <title>{%block title%}My store{%endblock title%}</title>
+</head>
+<body>
+
+  <header>
+    <strong> MY E-STORE</strong>
+    <a href = "{% url 'product_list' %}">Home/Shop</a>
+    <a href = "#">Cart (0)</a>
+  </header>
+  <hr>
+
+  <main>
+    {% block content %}
+
+    {% endblock content %}
+  </main>
+
+  <hr>
+
+  <footer>
+    <p> My first e-store website </p>
+  </footer>
+
+</body>  
+</html>
